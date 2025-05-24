@@ -1,4 +1,4 @@
-# streamlit_app.py — Classify real vs fake face using ViT + LoRA (Enhanced UI)
+# streamlit_app.py — Classify real vs fake face using ViT + LoRA (Enhanced UI + Colored Labels)
 
 import os
 import streamlit as st
@@ -63,17 +63,27 @@ st.markdown("""
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        width: 100%;
     }
     .centered-image img {
         max-width: 30vw;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
     }
     .result-box {
-        text-align: center;
         font-size: 1.3rem;
         font-weight: 600;
         margin-bottom: 1rem;
+        text-align: center;
+    }
+    .label-real {
+        color: #28a745;
+    }
+    .label-fake {
+        color: #dc3545;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -88,7 +98,10 @@ if uploaded:
     img = Image.open(uploaded).convert("RGB")
     label, confidence = predict(img)
 
-    st.markdown(f"<div class='centered-container'><div class='result-box'>🧾 <b>Prediction:</b> {label} — Confidence: {confidence:.2%}</div>", unsafe_allow_html=True)
+    label_class = "label-real" if label == "Real" else "label-fake"
+    result_html = f"<div class='result-box {label_class}'>🧾 <b>Prediction:</b> {label} — Confidence: {confidence:.2%}</div>"
+
+    st.markdown("<div class='centered-container'>" + result_html, unsafe_allow_html=True)
     st.markdown("<div class='centered-image'>", unsafe_allow_html=True)
     st.image(img, use_container_width=False)
     st.markdown("</div></div>", unsafe_allow_html=True)
