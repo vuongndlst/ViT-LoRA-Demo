@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Phân loại ảnh Real/Fake</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+  <div class="container py-5">
+    <div class="card shadow-lg p-4">
+      <h2 class="text-center mb-4 text-primary">🧠 Phân loại ảnh Real / Fake bằng AI</h2>
+      <form method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+          <label for="image" class="form-label">Chọn ảnh chân dung:</label>
+          <input type="file" class="form-control" name="image" id="image" accept="image/*" required>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary">🚀 Tải lên và phân tích</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
